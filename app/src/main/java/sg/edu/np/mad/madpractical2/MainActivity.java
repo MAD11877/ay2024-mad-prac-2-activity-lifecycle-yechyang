@@ -1,6 +1,7 @@
 package sg.edu.np.mad.madpractical2;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,9 +32,24 @@ public class MainActivity extends AppCompatActivity {
         TextView tvDescription = findViewById(R.id.tvDescription);
         Button btnFollow = findViewById(R.id.btnFollow);
 
+
         // Set the TextViews with the User's name, description and default button message
         tvName.setText(user.name);
         tvDescription.setText(user.description);
         btnFollow.setText("Follow");
+
+        btnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user.followed){
+                    btnFollow.setText("Unfollow");
+                    user.followed = false;
+                }
+                else{
+                    btnFollow.setText("Follow");
+                    user.followed = true;
+                }
+            }
+        });
     }
 }
